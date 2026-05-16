@@ -7,55 +7,66 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; line-height: 1.5; color: #1a1a1a; background: #f5f3ef; min-height: 100vh; padding: 24px 16px 60px; }
-  .container { max-width: 720px; margin: 0 auto; }
-  .header { text-align: center; margin-bottom: 32px; }
-  .header h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
-  .header p { font-size: 14px; color: #888; }
-  .card { background: #fff; border-radius: 14px; border: 1px solid #e8e4de; padding: 20px 24px; margin-bottom: 16px; }
-  .section-title { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #f0ede8; }
+  .container { max-width: 740px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 28px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .header p { font-size: 13px; color: #999; }
+
+  .card { background: #fff; border-radius: 14px; border: 1px solid #e8e4de; padding: 18px 22px; margin-bottom: 14px; }
+
+  .section-title { font-size: 11px; font-weight: 700; color: #c4973a; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid #f5ede0; }
+
   .guests-block { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .guests-block label { font-size: 16px; font-weight: 500; }
-  .guests-block input { width: 110px; font-size: 18px; font-weight: 600; text-align: center; border: 1.5px solid #d8d4ce; border-radius: 8px; padding: 8px 12px; color: #1a1a1a; background: #faf9f7; outline: none; }
-  .guests-block input:focus { border-color: #b59a7a; background: #fff; }
+  .guests-block label { font-size: 15px; font-weight: 500; }
+  .guests-block input { width: 110px; font-size: 18px; font-weight: 700; text-align: center; border: 1.5px solid #d8d4ce; border-radius: 8px; padding: 8px 12px; outline: none; background: #faf9f7; }
+  .guests-block input:focus { border-color: #c4973a; }
+
   .variant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .variant-btn { padding: 12px 14px; border-radius: 10px; border: 1.5px solid #d8d4ce; background: #faf9f7; cursor: pointer; text-align: center; font-family: inherit; }
-  .variant-btn:hover { border-color: #b59a7a; }
-  .variant-btn.active { border-color: #b59a7a; background: #fdf3e7; }
-  .variant-btn .v-name { font-size: 14px; font-weight: 600; color: #1a1a1a; display: block; }
-  .variant-btn .v-sub { font-size: 12px; color: #888; display: block; margin-top: 3px; }
+  .variant-btn { padding: 11px 14px; border-radius: 10px; border: 1.5px solid #d8d4ce; background: #faf9f7; cursor: pointer; text-align: center; font-family: inherit; transition: all 0.15s; }
+  .variant-btn:hover { border-color: #c4973a; }
+  .variant-btn.active { border-color: #c4973a; background: #fdf3e7; }
+  .variant-btn .v-name { font-size: 13px; font-weight: 700; color: #1a1a1a; display: block; }
+  .variant-btn .v-sub { font-size: 11px; color: #999; display: block; margin-top: 2px; }
   .variant-btn.active .v-name { color: #8a6a3a; }
-  .variant-btn.active .v-sub { color: #b59a7a; }
-  .row { display: grid; grid-template-columns: 22px 1fr 120px 42px; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f5f3ef; }
+
+  .row { display: grid; grid-template-columns: 62px 1fr 120px 42px; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f5f3ef; }
   .row:last-child { border-bottom: none; }
-  .row label { font-size: 14px; color: #1a1a1a; cursor: pointer; }
-  .row .sub { font-size: 12px; color: #aaa; display: block; margin-top: 1px; }
-  .row input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; accent-color: #b59a7a; }
-  .row input[type=number] { width: 100%; text-align: right; font-size: 14px; font-weight: 500; border: 1.5px solid #d8d4ce; border-radius: 7px; padding: 6px 10px; color: #1a1a1a; background: #faf9f7; outline: none; font-family: inherit; }
-  .row input[type=number]:focus { border-color: #b59a7a; background: #fff; }
-  .row .unit { font-size: 12px; color: #aaa; }
-  .row.disabled label { color: #bbb; }
-  .row.disabled .sub { color: #ccc; }
-  .row.disabled input[type=number] { opacity: 0.3; pointer-events: none; background: #f5f3ef; }
-  .poprawiny-box { background: #faf9f7; border-radius: 10px; border: 1px solid #ede9e2; padding: 14px 16px; margin-top: 10px; }
-  .pb-row { display: grid; grid-template-columns: 1fr 120px 42px; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 14px; }
-  .pb-row:last-of-type { margin-bottom: 0; }
-  .pb-row input[type=number] { width: 100%; text-align: right; font-size: 14px; font-weight: 500; border: 1.5px solid #d8d4ce; border-radius: 7px; padding: 6px 10px; background: #fff; outline: none; font-family: inherit; }
-  .pb-row input[type=number]:focus { border-color: #b59a7a; }
-  .pb-row .unit { font-size: 12px; color: #aaa; }
-  .poprawiny-result { font-size: 13px; color: #888; margin-top: 12px; padding-top: 10px; border-top: 1px solid #ede9e2; display: flex; justify-content: space-between; }
-  .poprawiny-result span:last-child { font-weight: 600; color: #1a1a1a; }
-  .summary { background: #2c2420; border-radius: 14px; padding: 24px 28px; margin-top: 8px; }
-  .sum-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; margin-bottom: 10px; color: #bbb; gap: 12px; }
-  .sum-row span:last-child { font-weight: 500; color: #eee; white-space: nowrap; }
-  .sum-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 22px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 14px; padding-top: 14px; color: #fff; }
+  .row label { font-size: 13.5px; color: #1a1a1a; line-height: 1.4; }
+  .row .sub { font-size: 11.5px; color: #bbb; display: block; margin-top: 1px; }
+  .row input[type=number] { width: 100%; text-align: right; font-size: 13.5px; font-weight: 600; border: 1.5px solid #d8d4ce; border-radius: 7px; padding: 5px 9px; color: #0000aa; background: #f0f4ff; outline: none; font-family: inherit; }
+  .row input[type=number]:focus { border-color: #c4973a; background: #fff; }
+  .row .unit { font-size: 11px; color: #bbb; }
+
+  .toggle-btn { display: flex; align-items: center; justify-content: center; width: 54px; height: 28px; border-radius: 20px; border: none; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; transition: all 0.15s; font-family: inherit; flex-shrink: 0; }
+  .toggle-btn.tak { background: #c8e6c9; color: #1b5e20; }
+  .toggle-btn.nie { background: #ffcdd2; color: #b71c1c; }
+  .row.disabled label { color: #ccc; }
+  .row.disabled .sub { color: #ddd; }
+  .row.disabled input[type=number] { opacity: 0.3; pointer-events: none; }
+
+  .poprawiny-sub { background: #faf9f7; border-radius: 10px; border: 1px solid #ede9e2; padding: 12px 14px; margin-top: 10px; }
+  .poprawiny-sub .row { border-bottom: 1px solid #f0ede8; }
+  .poprawiny-sub .row:last-of-type { border-bottom: none; }
+  .pop-result { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-top: 10px; padding-top: 8px; border-top: 1px solid #ede9e2; }
+  .pop-result span:last-child { font-weight: 700; color: #1a1a1a; }
+
+  .summary { background: #2c2420; border-radius: 14px; padding: 22px 26px; margin-top: 6px; }
+  .sum-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; margin-bottom: 8px; color: #bbb; gap: 12px; }
+  .sum-row span:last-child { font-weight: 600; color: #eee; white-space: nowrap; }
+  .sum-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 21px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.12); margin-top: 12px; padding-top: 12px; }
+  .sum-total span:first-child { color: #fff; }
   .sum-total span:last-child { color: #e8c87a; }
-  .footer { text-align: center; margin-top: 24px; font-size: 12px; color: #bbb; }
-  @media (max-width: 500px) {
-    .card { padding: 16px; }
+
+  .footer { text-align: center; margin-top: 22px; font-size: 12px; color: #bbb; }
+
+  @media (max-width: 520px) {
+    .card { padding: 14px 14px; }
     .variant-grid { grid-template-columns: 1fr; }
-    .row { grid-template-columns: 22px 1fr 90px 36px; gap: 8px; }
-    .row label { font-size: 13px; }
-    .pb-row { grid-template-columns: 1fr 90px 36px; gap: 8px; }
+    .row { grid-template-columns: 58px 1fr 90px 36px; gap: 7px; }
+    .row label { font-size: 12.5px; }
+    .row input[type=number] { font-size: 12.5px; padding: 4px 7px; }
+    .toggle-btn { width: 48px; font-size: 10px; }
   }
 </style>
 </head>
@@ -64,14 +75,14 @@
 
   <div class="header">
     <h1>Kalkulator kosztów wesela</h1>
-    <p>Dwór Złotopolska Dolina &nbsp;·&nbsp; Trębki Nowe 89, Zakroczym</p>
+    <p>Dwór Złotopolska Dolina &nbsp;·&nbsp; Trębki Nowe 89, Zakroczym &nbsp;·&nbsp; tel. 601-691-399</p>
   </div>
 
   <div class="card">
     <div class="section-title">Liczba gości</div>
     <div class="guests-block">
-      <label for="guests">Goście weselni (max 160)</label>
-      <input type="number" id="guests" value="100" min="1" max="160" step="1">
+      <label for="guests">Goście weselni (max 140)</label>
+      <input type="number" id="guests" value="100" min="1" max="140" step="1">
     </div>
   </div>
 
@@ -90,76 +101,134 @@
   </div>
 
   <div class="card">
-    <div class="section-title">Dwór — dodatki</div>
-    <div class="row disabled" id="r_florist"><input type="checkbox" onchange="toggle('florist',this)"><label>Florystyka sali<span class="sub">Sztuka Dekoracji J. Walkowska</span></label><input type="number" id="florist" value="30" step="1" disabled><span class="unit">zł/os</span></div>
-    <div class="row disabled" id="r_deser"><input type="checkbox" onchange="toggle('deser',this)"><label>Deser po kolacji</label><input type="number" id="deser" value="20" step="1" disabled><span class="unit">zł/os</span></div>
-    <div class="row disabled" id="r_barman_venue"><input type="checkbox" onchange="toggle('barman_venue',this)"><label>Barman (dwór)<span class="sub">do godz. 02:00</span></label><input type="number" id="barman_venue" value="1600" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_slub_plener"><input type="checkbox" onchange="toggle('slub_plener',this)"><label>Ślub w plenerze — pełny pakiet<span class="sub">polana + dekoracje + aperitif + smyczki</span></label><input type="number" id="slub_plener" value="7250" step="50" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_salonik"><input type="checkbox" onchange="toggle('salonik',this)"><label>Salonik Panny Młodej<span class="sub">do 10 osób, od godz. 9:00</span></label><input type="number" id="salonik" value="1600" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_live_cooking"><input type="checkbox" onchange="toggle('live_cooking',this)"><label>Live Cooking<span class="sub">np. makaron w kręgu sera</span></label><input type="number" id="live_cooking" value="50" step="1" disabled><span class="unit">zł/os</span></div>
-    <div class="row disabled" id="r_pickup"><input type="checkbox" onchange="toggle('pickup',this)"><label>Pickup Party — Peugeot<span class="sub">pakiet Premium All Inclusive</span></label><input type="number" id="pickup" value="4700" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_oprawa"><input type="checkbox" onchange="toggle('oprawa',this)"><label>Oprawa ogniowa<span class="sub">tort + powitanie Pary Młodej</span></label><input type="number" id="oprawa" value="1500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="section-title">Dwór — dodatki podstawowe</div>
+    <div class="row" id="r_salonik"><button class="toggle-btn nie" onclick="toggle('salonik',this)">NIE</button><label>Salonik Panny Młodej<span class="sub">do 10 osób, od godz. 9:00</span></label><input type="number" id="salonik" value="1600" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_barman_venue"><button class="toggle-btn nie" onclick="toggle('barman_venue',this)">NIE</button><label>Barman (dwór)<span class="sub">do godz. 02:00</span></label><input type="number" id="barman_venue" value="1600" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_slub_plener"><button class="toggle-btn nie" onclick="toggle('slub_plener',this)">NIE</button><label>Ślub w plenerze — pełny pakiet<span class="sub">polana + dekoracje + aperitif + smyczki</span></label><input type="number" id="slub_plener" value="7250" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_oprawa"><button class="toggle-btn nie" onclick="toggle('oprawa',this)">NIE</button><label>Oprawa ogniowa<span class="sub">tort + powitanie Pary Młodej</span></label><input type="number" id="oprawa" value="1500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_prezentacja"><button class="toggle-btn nie" onclick="toggle('prezentacja',this)">NIE</button><label>Prezentacja multimedialna w sali</label><input type="number" id="prezentacja" value="350" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_kominek"><button class="toggle-btn nie" onclick="toggle('kominek',this)">NIE</button><label>Rozpalenie i opieka nad kominkiem<span class="sub">20:00–03:00</span></label><input type="number" id="kominek" value="300" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_szatnia"><button class="toggle-btn nie" onclick="toggle('szatnia',this)">NIE</button><label>Opieka nad szatnią</label><input type="number" id="szatnia" value="500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_konfetti"><button class="toggle-btn nie" onclick="toggle('konfetti',this)">NIE</button><label>Sprzątanie po konfetti<span class="sub">tylko wewnątrz budynku</span></label><input type="number" id="konfetti" value="250" step="50" disabled><span class="unit">zł</span></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Rozszerzenia menu (dopłaty per osoba)</div>
+    <div class="row" id="r_florist"><button class="toggle-btn nie" onclick="toggle('florist',this)">NIE</button><label>Florystyka sali<span class="sub">Sztuka Dekoracji J. Walkowska</span></label><input type="number" id="florist" value="30" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_deser"><button class="toggle-btn nie" onclick="toggle('deser',this)">NIE</button><label>Deser po kolacji</label><input type="number" id="deser" value="20" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_zupa"><button class="toggle-btn nie" onclick="toggle('zupa',this)">NIE</button><label>Dodatkowa zupa</label><input type="number" id="zupa" value="18" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_danie_tal"><button class="toggle-btn nie" onclick="toggle('danie_tal',this)">NIE</button><label>Dodatkowe danie talerzowane</label><input type="number" id="danie_tal" value="45" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_danie_buf1"><button class="toggle-btn nie" onclick="toggle('danie_buf1',this)">NIE</button><label>Dodatkowe jedno danie w bufecie</label><input type="number" id="danie_buf1" value="35" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_danie_buf2"><button class="toggle-btn nie" onclick="toggle('danie_buf2',this)">NIE</button><label>Dodatkowe dwa dania w bufecie (po 70%)</label><input type="number" id="danie_buf2" value="50" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_przekaski"><button class="toggle-btn nie" onclick="toggle('przekaski',this)">NIE</button><label>Przekąski w stole</label><input type="number" id="przekaski" value="30" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_polmisek1"><button class="toggle-btn nie" onclick="toggle('polmisek1',this)">NIE</button><label>Zamiana jednego dania w bufecie na półmisek</label><input type="number" id="polmisek1" value="18" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_polmisek2"><button class="toggle-btn nie" onclick="toggle('polmisek2',this)">NIE</button><label>Zamiana 2 ostatnich dań na półmiski 100%</label><input type="number" id="polmisek2" value="35" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_kredens"><button class="toggle-btn nie" onclick="toggle('kredens',this)">NIE</button><label>Kredens Babuni / Stół Wiejski</label><input type="number" id="kredens" value="28" step="1" disabled><span class="unit">zł/os</span></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Napoje i bary</div>
+    <div class="row" id="r_piramida"><button class="toggle-btn nie" onclick="toggle('piramida',this)">NIE</button><label>Piramida Prosecco</label><input type="number" id="piramida" value="500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_piramida2"><button class="toggle-btn nie" onclick="toggle('piramida2',this)">NIE</button><label>Piramida Prosecco na powitanie Młodej Pary</label><input type="number" id="piramida2" value="500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_lemoniada"><button class="toggle-btn nie" onclick="toggle('lemoniada',this)">NIE</button><label>Stół z lemoniadą (3 smaki)</label><input type="number" id="lemoniada" value="800" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_stol_wl"><button class="toggle-btn nie" onclick="toggle('stol_wl',this)">NIE</button><label>Stół włoski</label><input type="number" id="stol_wl" value="3300" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_pickup"><button class="toggle-btn nie" onclick="toggle('pickup',this)">NIE</button><label>Pickup Party — Peugeot<span class="sub">pakiet Premium All Inclusive</span></label><input type="number" id="pickup" value="4700" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_tatar"><button class="toggle-btn nie" onclick="toggle('tatar',this)">NIE</button><label>Live Cooking — Trio Tatarów</label><input type="number" id="tatar" value="49" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_makaron"><button class="toggle-btn nie" onclick="toggle('makaron',this)">NIE</button><label>Live Cooking — Makaron w kręgu sera</label><input type="number" id="makaron" value="50" step="1" disabled><span class="unit">zł/os</span></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Dekoracje</div>
+    <div class="row" id="r_amore"><button class="toggle-btn nie" onclick="toggle('amore',this)">NIE</button><label>Napis AMORE podświetlany</label><input type="number" id="amore" value="600" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_swiecz_zl"><button class="toggle-btn nie" onclick="toggle('swiecz_zl',this)">NIE</button><label>Komplet złotych świeczników na stół</label><input type="number" id="swiecz_zl" value="75" step="5" disabled><span class="unit">zł/kpl</span></div>
+    <div class="row" id="r_swiecz_szk"><button class="toggle-btn nie" onclick="toggle('swiecz_szk',this)">NIE</button><label>Standardowe szklane świeczniki</label><input type="number" id="swiecz_szk" value="6" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_obrusy"><button class="toggle-btn nie" onclick="toggle('obrusy',this)">NIE</button><label>Wypożyczenie welurowych beżowych obrusów</label><input type="number" id="obrusy" value="50" step="5" disabled><span class="unit">zł/szt</span></div>
+    <div class="row" id="r_serwety"><button class="toggle-btn nie" onclick="toggle('serwety',this)">NIE</button><label>Wypożyczenie serwet brudny róż</label><input type="number" id="serwety" value="3" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_lustra"><button class="toggle-btn nie" onclick="toggle('lustra',this)">NIE</button><label>Wypożyczenie dekoracyjnych luster na stół</label><input type="number" id="lustra" value="30" step="5" disabled><span class="unit">zł/szt</span></div>
+    <div class="row" id="r_poduszki"><button class="toggle-btn nie" onclick="toggle('poduszki',this)">NIE</button><label>Wypożyczenie beżowych poduszek na krzesła</label><input type="number" id="poduszki" value="3" step="1" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_utylizacja"><button class="toggle-btn nie" onclick="toggle('utylizacja',this)">NIE</button><label>Utylizacja dekoracji florystycznych<span class="sub">kwiaty, dywany, lustra itp.</span></label><input type="number" id="utylizacja" value="500" step="50" disabled><span class="unit">zł</span></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Tort</div>
+    <div class="row" id="r_tort3p"><button class="toggle-btn nie" onclick="toggle('tort3p',this)">NIE</button><label>Zamiana tortu na III piętrowy okrągły</label><input type="number" id="tort3p" value="600" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_tort_wl"><button class="toggle-btn nie" onclick="toggle('tort_wl',this)">NIE</button><label>Dopłata do tortu włoskiego z owocami</label><input type="number" id="tort_wl" value="800" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_tort_ext"><button class="toggle-btn nie" onclick="toggle('tort_ext',this)">NIE</button><label>Serwis tortu z firmy zewnętrznej</label><input type="number" id="tort_ext" value="600" step="50" disabled><span class="unit">zł</span></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Obsługa dodatkowa</div>
+    <div class="row" id="r_kelner_alk"><button class="toggle-btn nie" onclick="toggle('kelner_alk',this)">NIE</button><label>Kelner opiekujący się alkoholem</label><input type="number" id="kelner_alk" value="800" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_kelner_dod"><button class="toggle-btn nie" onclick="toggle('kelner_dod',this)">NIE</button><label>Dodatkowy kelner</label><input type="number" id="kelner_dod" value="800" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_zmyw_drink"><button class="toggle-btn nie" onclick="toggle('zmyw_drink',this)">NIE</button><label>Zmywanie szkła — drink bar z zewnątrz</label><input type="number" id="zmyw_drink" value="800" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_zmyw_pros"><button class="toggle-btn nie" onclick="toggle('zmyw_pros',this)">NIE</button><label>Zmywanie szkła — prosecco z zewnątrz</label><input type="number" id="zmyw_pros" value="500" step="50" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_pakowanie"><button class="toggle-btn nie" onclick="toggle('pakowanie',this)">NIE</button><label>Pakowanie i opakowania do żywności po weselu</label><input type="number" id="pakowanie" value="350" step="50" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Poprawiny — Chata Grillowa</div>
-    <div class="row disabled" id="r_poprawiny">
-      <input type="checkbox" id="cb_poprawiny" onchange="togglePoprawiny(this)">
-      <label for="cb_poprawiny">Chata Grillowa<span class="sub">ryczałt za 40 osób, godz. 12–17, max 60 os</span></label>
+    <div class="row" id="r_poprawiny">
+      <button class="toggle-btn nie" id="btn_poprawiny" onclick="togglePoprawiny(this)">NIE</button>
+      <label>Chata Grillowa<span class="sub">ryczałt za 40 osób, godz. 12–17, max 60 os</span></label>
       <span></span><span></span>
     </div>
-    <div class="poprawiny-box" id="poprawiny_box" style="opacity:0.4; pointer-events:none;">
-      <div class="pb-row"><span>Ryczałt (40 os)</span><input type="number" id="p_ryczalt" value="7500" step="100" oninput="calcPoprawiny()"><span class="unit">zł</span></div>
-      <div class="pb-row"><span>Dodatkowe osoby ponad 40 (max 20)</span><input type="number" id="p_extra" value="0" min="0" max="20" step="1" oninput="calcPoprawiny()"><span class="unit">os</span></div>
-      <div class="poprawiny-result"><span>Koszt poprawin łącznie (160 zł/os dodatkowa)</span><span id="p_total">7 500 zł</span></div>
+    <div class="poprawiny-sub" id="poprawiny_box" style="opacity:0.35; pointer-events:none;">
+      <div class="row"><span></span><label>Ryczałt (40 os)</label><input type="number" id="p_ryczalt" value="7500" step="100" oninput="calc()"><span class="unit">zł</span></div>
+      <div class="row"><span></span><label>Dodatkowe osoby ponad 40 (max 20)</label><input type="number" id="p_extra" value="0" min="0" max="20" step="1" oninput="calc()"><span class="unit">os</span></div>
+      <div class="pop-result"><span>Koszt poprawin łącznie (160 zł/os dodatkowa)</span><span id="p_total">7 500 zł</span></div>
     </div>
   </div>
 
   <div class="card">
     <div class="section-title">Ślub kościelny</div>
-    <div class="row disabled" id="r_kosciol"><input type="checkbox" onchange="toggle('kosciol',this)"><label>Opłaty kościelne<span class="sub">ksiądz, organista, kościelny</span></label><input type="number" id="kosciol" value="3000" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_dek_kosciol"><input type="checkbox" onchange="toggle('dek_kosciol',this)"><label>Dekoracja kościoła</label><input type="number" id="dek_kosciol" value="3000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_kosciol"><button class="toggle-btn nie" onclick="toggle('kosciol',this)">NIE</button><label>Opłaty kościelne<span class="sub">ksiądz, organista, kościelny</span></label><input type="number" id="kosciol" value="3000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_dek_kosciol"><button class="toggle-btn nie" onclick="toggle('dek_kosciol',this)">NIE</button><label>Dekoracja kościoła</label><input type="number" id="dek_kosciol" value="3000" step="100" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Muzyka i dokumentacja</div>
-    <div class="row disabled" id="r_zespol"><input type="checkbox" onchange="toggle('zespol',this)"><label>Zespół muzyczny</label><input type="number" id="zespol" value="12000" step="500" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_fotograf"><input type="checkbox" onchange="toggle('fotograf',this)"><label>Fotograf</label><input type="number" id="fotograf" value="8000" step="500" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_kamerzysta"><input type="checkbox" onchange="toggle('kamerzysta',this)"><label>Kamerzysta</label><input type="number" id="kamerzysta" value="5000" step="500" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_zespol"><button class="toggle-btn nie" onclick="toggle('zespol',this)">NIE</button><label>Zespół muzyczny</label><input type="number" id="zespol" value="12000" step="500" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_fotograf"><button class="toggle-btn nie" onclick="toggle('fotograf',this)">NIE</button><label>Fotograf</label><input type="number" id="fotograf" value="8000" step="500" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_kamerzysta"><button class="toggle-btn nie" onclick="toggle('kamerzysta',this)">NIE</button><label>Kamerzysta</label><input type="number" id="kamerzysta" value="5000" step="500" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Transport i hotel</div>
-    <div class="row disabled" id="r_autobus"><input type="checkbox" onchange="toggle('autobus',this)"><label>Autobus dla gości</label><input type="number" id="autobus" value="2500" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_limuzyna"><input type="checkbox" onchange="toggle('limuzyna',this)"><label>Samochód / limuzyna do ślubu</label><input type="number" id="limuzyna" value="2000" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_hotel"><input type="checkbox" onchange="toggle('hotel',this)"><label>Hotel dla gości</label><input type="number" id="hotel" value="5000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_autobus"><button class="toggle-btn nie" onclick="toggle('autobus',this)">NIE</button><label>Autobus dla gości</label><input type="number" id="autobus" value="2500" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_limuzyna"><button class="toggle-btn nie" onclick="toggle('limuzyna',this)">NIE</button><label>Samochód / limuzyna do ślubu</label><input type="number" id="limuzyna" value="2000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_hotel"><button class="toggle-btn nie" onclick="toggle('hotel',this)">NIE</button><label>Hotel dla gości</label><input type="number" id="hotel" value="5000" step="100" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Alkohol i barman</div>
-    <div class="row disabled" id="r_alkohol"><input type="checkbox" onchange="toggle('alkohol',this)"><label>Alkohol<span class="sub">szacunkowo na osobę</span></label><input type="number" id="alkohol" value="150" step="10" disabled><span class="unit">zł/os</span></div>
-    <div class="row disabled" id="r_barman_ext"><input type="checkbox" onchange="toggle('barman_ext',this)"><label>Barman z zewnątrz<span class="sub">jeśli nie korzystasz z oferty dworu</span></label><input type="number" id="barman_ext" value="2000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_alkohol"><button class="toggle-btn nie" onclick="toggle('alkohol',this)">NIE</button><label>Alkohol<span class="sub">szacunkowo na osobę</span></label><input type="number" id="alkohol" value="150" step="10" disabled><span class="unit">zł/os</span></div>
+    <div class="row" id="r_barman_ext"><button class="toggle-btn nie" onclick="toggle('barman_ext',this)">NIE</button><label>Barman z zewnątrz<span class="sub">jeśli nie korzystasz z oferty dworu</span></label><input type="number" id="barman_ext" value="2000" step="100" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Para Młoda</div>
-    <div class="row disabled" id="r_suknia"><input type="checkbox" onchange="toggle('suknia',this)"><label>Suknia ślubna</label><input type="number" id="suknia" value="5000" step="500" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_garnitur"><input type="checkbox" onchange="toggle('garnitur',this)"><label>Garnitur / smoking</label><input type="number" id="garnitur" value="2000" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_obracki"><input type="checkbox" onchange="toggle('obracki',this)"><label>Obrączki</label><input type="number" id="obracki" value="4000" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_makijaz"><input type="checkbox" onchange="toggle('makijaz',this)"><label>Makijaż i fryzura</label><input type="number" id="makijaz" value="1200" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_bukiet"><input type="checkbox" onchange="toggle('bukiet',this)"><label>Bukiet ślubny</label><input type="number" id="bukiet" value="600" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_suknia"><button class="toggle-btn nie" onclick="toggle('suknia',this)">NIE</button><label>Suknia ślubna</label><input type="number" id="suknia" value="5000" step="500" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_garnitur"><button class="toggle-btn nie" onclick="toggle('garnitur',this)">NIE</button><label>Garnitur / smoking</label><input type="number" id="garnitur" value="2000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_obracki"><button class="toggle-btn nie" onclick="toggle('obracki',this)">NIE</button><label>Obrączki</label><input type="number" id="obracki" value="4000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_makijaz"><button class="toggle-btn nie" onclick="toggle('makijaz',this)">NIE</button><label>Makijaż i fryzura</label><input type="number" id="makijaz" value="1200" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_bukiet"><button class="toggle-btn nie" onclick="toggle('bukiet',this)">NIE</button><label>Bukiet ślubny</label><input type="number" id="bukiet" value="600" step="100" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="card">
     <div class="section-title">Pozostałe</div>
-    <div class="row disabled" id="r_zaproszenia"><input type="checkbox" onchange="toggle('zaproszenia',this)"><label>Zaproszenia + winietki</label><input type="number" id="zaproszenia" value="1500" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_pamiatki"><input type="checkbox" onchange="toggle('pamiatki',this)"><label>Pamiątki dla gości</label><input type="number" id="pamiatki" value="1500" step="100" disabled><span class="unit">zł</span></div>
-    <div class="row disabled" id="r_inne"><input type="checkbox" onchange="toggle('inne',this)"><label>Rezerwa / nieprzewidziane</label><input type="number" id="inne" value="3000" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_zaproszenia"><button class="toggle-btn nie" onclick="toggle('zaproszenia',this)">NIE</button><label>Zaproszenia + winietki</label><input type="number" id="zaproszenia" value="1500" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_pamiatki"><button class="toggle-btn nie" onclick="toggle('pamiatki',this)">NIE</button><label>Pamiątki dla gości</label><input type="number" id="pamiatki" value="1500" step="100" disabled><span class="unit">zł</span></div>
+    <div class="row" id="r_inne"><button class="toggle-btn nie" onclick="toggle('inne',this)">NIE</button><label>Rezerwa / nieprzewidziane</label><input type="number" id="inne" value="3000" step="100" disabled><span class="unit">zł</span></div>
   </div>
 
   <div class="summary">
     <div class="sum-row"><span>Baza (wariant × goście)</span><span id="s_baza">0 zł</span></div>
-    <div class="sum-row"><span>Dodatki z dworu</span><span id="s_dwor">0 zł</span></div>
+    <div class="sum-row"><span>Dodatki podstawowe z dworu</span><span id="s_dwor">0 zł</span></div>
+    <div class="sum-row"><span>Rozszerzenia menu</span><span id="s_menu">0 zł</span></div>
+    <div class="sum-row"><span>Napoje i bary</span><span id="s_napoje">0 zł</span></div>
+    <div class="sum-row"><span>Dekoracje</span><span id="s_deko">0 zł</span></div>
+    <div class="sum-row"><span>Tort</span><span id="s_tort">0 zł</span></div>
+    <div class="sum-row"><span>Obsługa dodatkowa</span><span id="s_obsluga">0 zł</span></div>
     <div class="sum-row"><span>Poprawiny — Chata Grillowa</span><span id="s_poprawiny">0 zł</span></div>
     <div class="sum-row"><span>Ślub kościelny</span><span id="s_kosciol_sum">0 zł</span></div>
     <div class="sum-row"><span>Muzyka i dokumentacja</span><span id="s_muzyka">0 zł</span></div>
@@ -171,100 +240,122 @@
   </div>
 
   <div class="footer">
-    Dwór Złotopolska Dolina &nbsp;·&nbsp; tel. 601-691-399 &nbsp;·&nbsp; zlotopolskadolina.pl<br>
-    Oferta ważna przez 10 dni od otrzymania. Kwoty orientacyjne — mogą ulec zmianie.
+    Dwór Złotopolska Dolina &nbsp;·&nbsp; zlotopolskadolina.pl &nbsp;·&nbsp; Oferta ważna 10 dni od otrzymania.
   </div>
+
 </div>
-
 <script>
-  let variant = 1;
-  let poprawyEnabled = false;
-  const perGuest = ['florist','deser','alkohol','live_cooking'];
-  const groups = {
-    dwor: ['florist','deser','barman_venue','slub_plener','salonik','live_cooking','pickup','oprawa'],
-    kosciol_sum: ['kosciol','dek_kosciol'],
-    muzyka: ['zespol','fotograf','kamerzysta'],
-    transport: ['autobus','limuzyna','hotel'],
-    alkohol_sum: ['alkohol','barman_ext'],
-    para: ['suknia','garnitur','obracki','makijaz','bukiet'],
-    pozostale: ['zaproszenia','pamiatki','inne']
-  };
+let variant = 1;
+let popEnabled = false;
 
-  function setVariant(v) {
-    variant = v;
-    document.getElementById('v1btn').className = 'variant-btn' + (v===1?' active':'');
-    document.getElementById('v2btn').className = 'variant-btn' + (v===2?' active':'');
-    calc();
-  }
+// per-guest items
+const PG = ['florist','deser','zupa','danie_tal','danie_buf1','danie_buf2','przekaski','polmisek1','polmisek2','kredens','tatar','makaron','swiecz_szk','serwety','poduszki','alkohol'];
 
-  function toggle(id, cb) {
-    const row = document.getElementById('r_'+id);
-    const inp = document.getElementById(id);
-    if (cb.checked) { row.classList.remove('disabled'); inp.disabled = false; }
-    else { row.classList.add('disabled'); inp.disabled = true; }
-    calc();
-  }
+const groups = {
+  dwor:      ['salonik','barman_venue','slub_plener','oprawa','prezentacja','kominek','szatnia','konfetti'],
+  menu:      ['florist','deser','zupa','danie_tal','danie_buf1','danie_buf2','przekaski','polmisek1','polmisek2','kredens'],
+  napoje:    ['piramida','piramida2','lemoniada','stol_wl','pickup','tatar','makaron'],
+  deko:      ['amore','swiecz_zl','swiecz_szk','obrusy','serwety','lustra','poduszki','utylizacja'],
+  tort:      ['tort3p','tort_wl','tort_ext'],
+  obsluga:   ['kelner_alk','kelner_dod','zmyw_drink','zmyw_pros','pakowanie'],
+  kosciol_sum: ['kosciol','dek_kosciol'],
+  muzyka:    ['zespol','fotograf','kamerzysta'],
+  transport: ['autobus','limuzyna','hotel'],
+  alkohol_sum: ['alkohol','barman_ext'],
+  para:      ['suknia','garnitur','obracki','makijaz','bukiet'],
+  pozostale: ['zaproszenia','pamiatki','inne']
+};
 
-  function togglePoprawiny(cb) {
-    poprawyEnabled = cb.checked;
-    const box = document.getElementById('poprawiny_box');
-    const row = document.getElementById('r_poprawiny');
-    if (cb.checked) { box.style.opacity='1'; box.style.pointerEvents='auto'; row.classList.remove('disabled'); }
-    else { box.style.opacity='0.4'; box.style.pointerEvents='none'; row.classList.add('disabled'); }
-    calcPoprawiny();
-  }
-
-  function calcPoprawiny() {
-    const ryczalt = parseFloat(document.getElementById('p_ryczalt').value) || 7500;
-    const extra = Math.min(parseInt(document.getElementById('p_extra').value) || 0, 20);
-    const total = ryczalt + extra * 160;
-    document.getElementById('p_total').textContent = fmt(total);
-    calc();
-  }
-
-  function getPoprawinyTotal() {
-    if (!poprawyEnabled) return 0;
-    const ryczalt = parseFloat(document.getElementById('p_ryczalt').value) || 7500;
-    const extra = Math.min(parseInt(document.getElementById('p_extra').value) || 0, 20);
-    return ryczalt + extra * 160;
-  }
-
-  function getVal(id) {
-    const inp = document.getElementById(id);
-    if (!inp || inp.disabled) return 0;
-    return parseFloat(inp.value) || 0;
-  }
-
-  function fmt(n) { return Math.round(n).toLocaleString('pl-PL') + ' zł'; }
-
-  function calc() {
-    const g = parseInt(document.getElementById('guests').value) || 0;
-    const pricePerPerson = variant === 1 ? 475 : 450;
-    const baza = pricePerPerson * g;
-    let totals = {};
-    for (const k in groups) totals[k] = 0;
-    for (const k in groups) {
-      for (const id of groups[k]) {
-        totals[k] += perGuest.includes(id) ? getVal(id) * g : getVal(id);
-      }
-    }
-    const poprawinyTotal = getPoprawinyTotal();
-    const total = baza + poprawinyTotal + Object.values(totals).reduce((a,b)=>a+b,0);
-    document.getElementById('s_baza').textContent = fmt(baza);
-    document.getElementById('s_dwor').textContent = fmt(totals.dwor);
-    document.getElementById('s_poprawiny').textContent = fmt(poprawinyTotal);
-    document.getElementById('s_kosciol_sum').textContent = fmt(totals.kosciol_sum);
-    document.getElementById('s_muzyka').textContent = fmt(totals.muzyka);
-    document.getElementById('s_transport').textContent = fmt(totals.transport);
-    document.getElementById('s_alkohol_sum').textContent = fmt(totals.alkohol_sum);
-    document.getElementById('s_para').textContent = fmt(totals.para);
-    document.getElementById('s_pozostale').textContent = fmt(totals.pozostale);
-    document.getElementById('s_total').textContent = fmt(total);
-  }
-
-  document.getElementById('guests').addEventListener('input', calc);
-  document.querySelectorAll('.row input[type=number]').forEach(el => el.addEventListener('input', calc));
+function setVariant(v) {
+  variant = v;
+  document.getElementById('v1btn').className = 'variant-btn' + (v===1?' active':'');
+  document.getElementById('v2btn').className = 'variant-btn' + (v===2?' active':'');
   calc();
+}
+
+function toggle(id, btn) {
+  const row = document.getElementById('r_'+id);
+  const inp = document.getElementById(id);
+  const isNie = btn.classList.contains('nie');
+  if (isNie) {
+    btn.textContent = 'TAK'; btn.className = 'toggle-btn tak';
+    row.classList.remove('disabled'); inp.disabled = false;
+  } else {
+    btn.textContent = 'NIE'; btn.className = 'toggle-btn nie';
+    row.classList.add('disabled'); inp.disabled = true;
+  }
+  calc();
+}
+
+function togglePoprawiny(btn) {
+  const box = document.getElementById('poprawiny_box');
+  const row = document.getElementById('r_poprawiny');
+  const isNie = btn.classList.contains('nie');
+  if (isNie) {
+    popEnabled = true; btn.textContent = 'TAK'; btn.className = 'toggle-btn tak';
+    box.style.opacity = '1'; box.style.pointerEvents = 'auto';
+  } else {
+    popEnabled = false; btn.textContent = 'NIE'; btn.className = 'toggle-btn nie';
+    box.style.opacity = '0.35'; box.style.pointerEvents = 'none';
+  }
+  calc();
+}
+
+function getVal(id) {
+  const inp = document.getElementById(id);
+  if (!inp || inp.disabled) return 0;
+  return parseFloat(inp.value) || 0;
+}
+
+function getPopTotal() {
+  if (!popEnabled) return 0;
+  const r = parseFloat(document.getElementById('p_ryczalt').value) || 7500;
+  const e = Math.min(parseInt(document.getElementById('p_extra').value) || 0, 20);
+  return r + e * 160;
+}
+
+function fmt(n) { return Math.round(n).toLocaleString('pl-PL') + ' zł'; }
+
+function calc() {
+  const g = parseInt(document.getElementById('guests').value) || 0;
+  const price = variant === 1 ? 475 : 450;
+  const baza = price * g;
+  let totals = {};
+  for (const k in groups) totals[k] = 0;
+  for (const k in groups) {
+    for (const id of groups[k]) {
+      totals[k] += PG.includes(id) ? getVal(id) * g : getVal(id);
+    }
+  }
+  const pop = getPopTotal();
+  const total = baza + pop + Object.values(totals).reduce((a,b)=>a+b,0);
+
+  const r = parseFloat(document.getElementById('p_ryczalt').value)||7500;
+  const e = Math.min(parseInt(document.getElementById('p_extra').value)||0,20);
+  document.getElementById('p_total').textContent = fmt(r + e*160);
+
+  document.getElementById('s_baza').textContent = fmt(baza);
+  document.getElementById('s_dwor').textContent = fmt(totals.dwor);
+  document.getElementById('s_menu').textContent = fmt(totals.menu);
+  document.getElementById('s_napoje').textContent = fmt(totals.napoje);
+  document.getElementById('s_deko').textContent = fmt(totals.deko);
+  document.getElementById('s_tort').textContent = fmt(totals.tort);
+  document.getElementById('s_obsluga').textContent = fmt(totals.obsluga);
+  document.getElementById('s_poprawiny').textContent = fmt(pop);
+  document.getElementById('s_kosciol_sum').textContent = fmt(totals.kosciol_sum);
+  document.getElementById('s_muzyka').textContent = fmt(totals.muzyka);
+  document.getElementById('s_transport').textContent = fmt(totals.transport);
+  document.getElementById('s_alkohol_sum').textContent = fmt(totals.alkohol_sum);
+  document.getElementById('s_para').textContent = fmt(totals.para);
+  document.getElementById('s_pozostale').textContent = fmt(totals.pozostale);
+  document.getElementById('s_total').textContent = fmt(total);
+}
+
+document.getElementById('guests').addEventListener('input', calc);
+document.getElementById('p_ryczalt').addEventListener('input', calc);
+document.getElementById('p_extra').addEventListener('input', calc);
+document.querySelectorAll('.row input[type=number]').forEach(el => el.addEventListener('input', calc));
+calc();
 </script>
 </body>
 </html>
